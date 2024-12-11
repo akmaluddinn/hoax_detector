@@ -1,6 +1,8 @@
 import torch
 from transformers import BertTokenizer, BertForSequenceClassification
+import streamlit as st
 
+@st.cache(allow_output_mutation=True)
 def load_model(model_path='model/model.pth'):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     tokenizer = BertTokenizer.from_pretrained('indobenchmark/indobert-base-p1')
