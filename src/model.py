@@ -4,7 +4,7 @@ from transformers import BertTokenizer, BertForSequenceClassification
 def load_model(model_path='model/model.pth'):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     tokenizer = BertTokenizer.from_pretrained('indobenchmark/indobert-base-p1')
-    model = BertForSequenceClassification.from_pretrained('indobenchmark/indobert-base-p1', force_download=True)
+    model = BertForSequenceClassification.from_pretrained('indobenchmark/indobert-base-p1', num_labels=2)
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.to(device)
     model.eval()
